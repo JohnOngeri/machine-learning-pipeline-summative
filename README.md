@@ -13,7 +13,7 @@ This project implements a comprehensive deepfake voice detection system that can
 
 ## 🏗️ Project Structure
 
-\`\`\`
+```bash
 deepvoice-fake-detection/
 ├── README.md
 ├── requirements.txt
@@ -22,36 +22,37 @@ deepvoice-fake-detection/
 ├── .gitignore
 │
 ├── notebook/
-│   └── deepvoice_pipeline.ipynb    # Complete ML pipeline demonstration
+│   └── deepvoice_pipeline.ipynb       # Complete ML pipeline demonstration
 │
 ├── src/
-│   ├── preprocessing.py            # Audio feature extraction and preprocessing
-│   ├── model.py                   # ML model training and evaluation
-│   ├── prediction.py              # Prediction service
-│   └── retraining.py              # Model retraining pipeline
+│   ├── preprocessing.py               # Audio feature extraction and preprocessing
+│   ├── model.py                       # ML model training and evaluation
+│   ├── prediction.py                  # Prediction service
+│   └── retraining.py                  # Model retraining pipeline
 │
 ├── data/
-│   ├── train/                     # Training data directory
-│   ├── test/                      # Test data directory
-│   └── DATASET-balanced.csv       # Preprocessed features dataset
+│   ├── train/                         # Training data directory
+│   ├── test/                          # Test data directory
+│   └── DATASET-balanced.csv          # Preprocessed features dataset
 │
 ├── models/
-│   ├── best_model.pkl             # Trained model
-│   └── preprocessor.pkl           # Feature preprocessing pipeline
+│   ├── best_model.pkl                # Trained model
+│   └── preprocessor.pkl              # Feature preprocessing pipeline
 │
 ├── api/
-│   └── main.py                    # FastAPI server for model serving
+│   └── main.py                       # FastAPI server for model serving
 │
 ├── ui/
-│   └── app.py                     # Streamlit dashboard
+│   └── app.py                        # Streamlit dashboard
 │
 ├── locust/
-│   └── locustfile.py              # Load testing script
+│   └── locustfile.py                 # Load testing script
 │
 └── scripts/
-    ├── train_initial_model.py     # Initial model training script
-    └── analyze_dataset.py         # Dataset analysis script
-\`\`\`
+    ├── train_initial_model.py        # Initial model training script
+    └── analyze_dataset.py            # Dataset analysis script
+```
+
 
 ## 🚀 Quick Start
 

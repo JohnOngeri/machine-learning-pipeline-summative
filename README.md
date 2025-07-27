@@ -14,7 +14,7 @@ This project implements a comprehensive deepfake voice detection system that can
 ## 🏗️ Project Structure
 
 ```bash
-deepvoice-fake-detection/
+machine learning pipeline summative/
 ├── README.md
 ├── requirements.txt
 ├── docker-compose.yml

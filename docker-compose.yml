@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
+
+  ui:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    environment:
+      - PYTHONPATH=/app
+    command: streamlit run ui/app.py --server.port 8501 --server.address 0.0.0.0
+    depends_on:
+      - api
+
+  load-test:
+    build: .
+    volumes:
+      - ./locust:/app/locust
+      - ./logs:/app/logs
+    command: locust -f locust/locustfile.py --host=http://api:8000
+    ports:
+      - "8089:8089"
+    depends_on:
+      - api

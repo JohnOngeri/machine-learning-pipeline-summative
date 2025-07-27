@@ -37,10 +37,7 @@ data/AUDIO/
 *.mp3
 *.flac
 
-# Model files
-models/*.pkl
-models/*.h5
-models/*.tf
+
 
 # Logs
 logs/
@@ -50,8 +47,7 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Jupyter
-.ipynb_checkpoints/
+
 
 # Environment variables
 .env

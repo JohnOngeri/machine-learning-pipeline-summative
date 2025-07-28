@@ -15,10 +15,14 @@ print(sys.path)
 class DeepfakePredictionService:
     """Service for making predictions on audio files"""
     
-    def __init__(self, model_path: str = 'models/best_model.pkl', 
-                 preprocessor_path: str = 'models/preprocessor.pkl'):
-        self.model_path = model_path
-        self.preprocessor_path = preprocessor_path
+    def __init__(self, 
+                 model_path: str = None, 
+                 preprocessor_path: str = None):
+
+        base_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative"
+        self.model_path = model_path or os.path.join(base_path, "models", "best_model.pkl")
+        self.preprocessor_path = preprocessor_path or os.path.join(base_path, "models", "preprocessor.pkl")
+        
         self.model = None
         self.preprocessor = None
         self.load_components()

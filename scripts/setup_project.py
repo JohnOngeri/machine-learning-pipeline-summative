@@ -104,10 +104,27 @@ def setup_project():
         print("❌ No data found! Please check your file paths.")
         return
     
-    # Save the combined dataset
-    final_dataset.to_csv(os.path.join('..', 'data', 'DATASET-balanced.csv'), index=False)
-    print(f"💾 Saved combined dataset: {len(final_dataset)} samples")
     
+
+        
+
+    # Explicit base paths
+    base_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative"
+    data_dir = os.path.join(base_path, "data")
+    models_dir = os.path.join(base_path, "models")
+    logs_dir = os.path.join(base_path, "logs")
+
+    # Step 1: Ensure directories exist BEFORE training
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(models_dir, exist_ok=True)
+    os.makedirs(logs_dir, exist_ok=True)
+
+    # Step 2: Save dataset
+    final_dataset_path = os.path.join(data_dir, "DATASET-balanced.csv")
+    final_dataset.to_csv(final_dataset_path, index=False)
+    print(f"💾 Saved combined dataset: {len(final_dataset)} samples")
+
+    # Step 3: Train model
     print("\n🤖 Step 3: Training initial model...")
     try:
         train_model()
@@ -116,21 +133,11 @@ def setup_project():
         logger.error(f"Model training failed: {e}")
         print("❌ Model training failed!")
         return
-    
+
     # Step 4: Final setup
     print("\n🎯 Step 4: Final setup...")
-    
-   
 
-    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    data_dir = os.path.join(parent_dir, 'data')
-    models_dir = os.path.join(parent_dir, 'models')
-    logs_dir = os.path.join(parent_dir, 'logs')
 
-    os.makedirs(data_dir, exist_ok=True)
-    os.makedirs(models_dir, exist_ok=True)
-    os.makedirs(logs_dir, exist_ok=True)
-    
     print("✅ Project setup completed!")
     
     print("\n🎉 SUCCESS! Your voice detective is ready!")

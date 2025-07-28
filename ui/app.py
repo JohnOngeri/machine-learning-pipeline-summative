@@ -10,7 +10,8 @@ import tempfile
 import time
 from datetime import datetime
 import json
-
+import sys
+sys.path.insert(0, '..')
 # Page configuration
 st.set_page_config(
     page_title="Deepfake Voice Detection",

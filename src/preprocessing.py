@@ -7,7 +7,8 @@ from loguru import logger
 import joblib
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.model_selection import train_test_split
-
+import sys
+sys.path.insert(0, '..')
 class AudioPreprocessor:
     """Audio preprocessing pipeline for deepfake detection"""
     

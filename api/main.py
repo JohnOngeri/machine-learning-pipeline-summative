@@ -9,11 +9,16 @@ from pydantic import BaseModel
 from loguru import logger
 import uvicorn
 import sys
-sys.path.append('..')
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+import sys
+sys.path.insert(0, '..')
+
 from src.prediction import DeepfakePredictionService
 from src.retraining import RetrainingService
 
-# Initialize FastAPI app
+# Initialize FastAPI appssss
 app = FastAPI(
     title="Deepfake Voice Detection API",
     description="API for detecting deepfake voices using machine learning",

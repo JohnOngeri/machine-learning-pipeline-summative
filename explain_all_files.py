@@ -9,9 +9,9 @@ def explain_all_files():
     print("\n📁 SCRIPTS FOLDER - The 'Buttons You Press'")
     print("   🔘 setup_project.py        → YOU RUN THIS (the main button)")
     print("   🔍 analyze_dataset.py      → Optional (data detective)")
-    print("   🤖 train_initial_model.py  → Optional (brain builder)")
+   
     print("   ✅ validate_audio_files.py → Optional (file checker)")
-    print("   🎵 process_raw_audio.py    → Optional (audio processor)")
+   
     
     print("\n📁 SRC FOLDER - The 'Engine Parts' (Auto-run)")
     print("   🧠 preprocessing.py  → Cleans and prepares data")

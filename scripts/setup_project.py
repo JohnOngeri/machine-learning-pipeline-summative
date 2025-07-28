@@ -2,15 +2,16 @@
 🎤 DEEPFAKE VOICE DETECTION - PROJECT SETUP
 Run this first to set up everything
 """
-
+import sys
+sys.path.append('..')
 import os
 import sys
 import pandas as pd
 sys.path.append('.')
 
-from scripts.validate_audio_files import validate_audio_files
-from scripts.process_raw_audio import process_audio_files
-from scripts.train_initial_model import main as train_model
+from validate_audio_files import validate_audio_files
+from process_raw_audio import process_audio_files
+from train_initial_model import main as train_model
 from src.preprocessing import AudioPreprocessor
 from src.model import DeepfakeDetectionModel
 from loguru import logger
@@ -21,10 +22,16 @@ def setup_project():
     print("🎤 DEEPFAKE VOICE DETECTION - PROJECT SETUP")
     print("="*50)
     
-    # Create folders
-    os.makedirs('data', exist_ok=True)
-    os.makedirs('models', exist_ok=True)
-    os.makedirs('logs', exist_ok=True)
+    print("\n🔍 Step 0: Creating directories...")
+
+    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(parent_dir, 'data')
+    models_dir = os.path.join(parent_dir, 'models')
+    logs_dir = os.path.join(parent_dir, 'logs')
+
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(models_dir, exist_ok=True)
+    os.makedirs(logs_dir, exist_ok=True)
     
     # Your 3 data sources
     audio_real_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\data\AUDIO\REAL"
@@ -98,7 +105,7 @@ def setup_project():
         return
     
     # Save the combined dataset
-    final_dataset.to_csv('data/DATASET-balanced.csv', index=False)
+    final_dataset.to_csv(os.path.join('..', 'data', 'DATASET-balanced.csv'), index=False)
     print(f"💾 Saved combined dataset: {len(final_dataset)} samples")
     
     print("\n🤖 Step 3: Training initial model...")
@@ -113,11 +120,16 @@ def setup_project():
     # Step 4: Final setup
     print("\n🎯 Step 4: Final setup...")
     
-    # Create additional directories
-    os.makedirs('data/train', exist_ok=True)
-    os.makedirs('data/test', exist_ok=True)
-    os.makedirs('data/retrain/REAL', exist_ok=True)
-    os.makedirs('data/retrain/FAKE', exist_ok=True)
+   
+
+    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(parent_dir, 'data')
+    models_dir = os.path.join(parent_dir, 'models')
+    logs_dir = os.path.join(parent_dir, 'logs')
+
+    os.makedirs(data_dir, exist_ok=True)
+    os.makedirs(models_dir, exist_ok=True)
+    os.makedirs(logs_dir, exist_ok=True)
     
     print("✅ Project setup completed!")
     

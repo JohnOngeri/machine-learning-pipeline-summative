@@ -8,7 +8,8 @@ from typing import List, Optional
 from pydantic import BaseModel
 from loguru import logger
 import uvicorn
-
+import sys
+sys.path.append('..')
 from src.prediction import DeepfakePredictionService
 from src.retraining import RetrainingService
 

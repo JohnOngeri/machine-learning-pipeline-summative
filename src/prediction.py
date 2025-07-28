@@ -3,8 +3,12 @@ import pandas as pd
 from typing import Dict, Any, List
 from loguru import logger
 import os
-from src.preprocessing import AudioPreprocessor
-from src.model import DeepfakeDetectionModel
+from preprocessing import AudioPreprocessor
+
+from model import DeepfakeDetectionModel
+
+import sys
+sys.path.insert(0, '..')
 
 class DeepfakePredictionService:
     """Service for making predictions on audio files"""

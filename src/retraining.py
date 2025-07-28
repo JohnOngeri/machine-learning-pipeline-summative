@@ -5,9 +5,9 @@ from typing import List, Dict, Any
 from loguru import logger
 from datetime import datetime
 import shutil
-from src.preprocessing import AudioPreprocessor
-from src.model import DeepfakeDetectionModel
+from preprocessing import AudioPreprocessor
 
+from model import DeepfakeDetectionModel
 class RetrainingService:
     """Service for retraining the model with new data"""
     

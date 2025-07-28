@@ -10,7 +10,7 @@ from loguru import logger
 def validate_audio_files():
     """Validate audio files in your directories"""
     
-    audio_base_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\KAGGLE\AUDIO"
+    audio_base_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\data\AUDIO"
     
     results = []
     

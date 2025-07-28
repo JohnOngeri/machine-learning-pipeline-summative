@@ -1,11 +1,13 @@
 """
 Script to process raw audio files and create dataset
-Use this to process your audio files from the KAGGLE/AUDIO directory
+Use this to process your audio files from the data/AUDIO directory
 """
 
 import os
 import sys
 sys.path.append('.')
+import sys
+sys.path.insert(0, '..')
 
 from src.preprocessing import AudioPreprocessor
 from loguru import logger
@@ -15,7 +17,7 @@ def process_audio_files():
     """Process raw audio files and create CSV dataset"""
     
     # Your audio file paths
-    audio_base_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\KAGGLE\AUDIO"
+    audio_base_path = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\data\AUDIO"
     
     logger.info(f"Processing audio files from: {audio_base_path}")
     

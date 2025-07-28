@@ -37,7 +37,11 @@ data/AUDIO/
 *.mp3
 *.flac
 
-
+# Data files (too large for git)
+data/AUDIO/
+*.wav
+*.mp3
+*.flac
 
 # Logs
 logs/

@@ -11,6 +11,7 @@ import time
 from datetime import datetime
 import json
 import sys
+import json
 sys.path.insert(0, '..')
 # Page configuration
 st.set_page_config(
@@ -240,19 +241,31 @@ def prediction_page():
             else:
                 st.error(f"❌ Prediction failed: {result.get('error', 'Unknown error')}")
 
+
+
 def analytics_page():
     st.header("Model Analytics")
-    
+
     # Get model metrics
     metrics = get_metrics()
     model_info = get_model_info()
-    
+
     if metrics.get("status") == "available":
         training_history = metrics["model_metrics"]
-        
+
+        # ✅ FIX: parse the string into a dictionary if needed
+        if isinstance(training_history, str):
+            try:
+                training_history = json.loads(training_history)
+            except json.JSONDecodeError as e:
+                st.error(f"Failed to parse training history: {e}")
+                return
+            st.write("Raw training history:", training_history)
+
+
         # Display key metrics
         col1, col2, col3, col4 = st.columns(4)
-        
+
         with col1:
             cv_score = training_history.get("cv_mean", 0)
             st.markdown(f"""
@@ -261,6 +274,7 @@ def analytics_page():
                 <h2>{cv_score:.3f}</h2>
             </div>
             """, unsafe_allow_html=True)
+
         
         with col2:
             val_metrics = training_history.get("val_metrics", {})

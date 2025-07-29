@@ -57,9 +57,37 @@ def main():
     logger.info("Evaluating model...")
     evaluation_results = model.evaluate(X_test, y_test)
 
+    # Extract metrics
+    metrics = evaluation_results.get("metrics", {})
+
+    # Print metrics for verification
+    print("\nEvaluation metrics returned:")
+    import pprint
+    pprint.pprint(metrics)
+    print()
+
+    # Ensure training_history is initialized
+    if not hasattr(model, "training_history") or not isinstance(model.training_history, dict):
+        model.training_history = {}
+
+    # Merge evaluation metrics into training history
+    model.training_history.update({
+        "val_accuracy": metrics.get("accuracy", 0),
+        "f1_score": metrics.get("f1", 0),
+        "precision": metrics.get("precision", 0),
+        "recall": metrics.get("recall", 0)
+    })
+
+    # Optionally store full evaluation metrics
+    model.evaluation_metrics = metrics
+
+    # Log final history
+    logger.info(f"Final training history: {model.training_history}")
+
     # Save model and preprocessor
     model.save_model(model_path)
     preprocessor.save_preprocessor(preprocessor_path)
+
 
     # Print summary
     logger.info("Training completed!")

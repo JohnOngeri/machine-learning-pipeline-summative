@@ -490,28 +490,33 @@ def system_info_page():
                 for param, value in model_info['best_params'].items():
                     st.write(f"- {param}: {value}")
     
+   
+
     # System metrics
     st.subheader("System Metrics")
-    
-    # File system info
+
+    # Full absolute paths
+    data_dir = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\data"
+    models_dir = r"C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\models"
+
     try:
-        data_dir = "data"
-        models_dir = "models"
-        
+        # Check Data Directory
         if os.path.exists(data_dir):
             st.write(f"**Data Directory:** ✅ {data_dir}")
         else:
             st.write(f"**Data Directory:** ❌ {data_dir} (not found)")
-        
+
+        # Check Models Directory
         if os.path.exists(models_dir):
             st.write(f"**Models Directory:** ✅ {models_dir}")
             model_files = [f for f in os.listdir(models_dir) if f.endswith(('.pkl', '.h5', '.tf'))]
             st.write(f"**Model Files:** {len(model_files)} found")
         else:
             st.write(f"**Models Directory:** ❌ {models_dir} (not found)")
-    
+
     except Exception as e:
         st.write(f"**File System Error:** {str(e)}")
+
     
     # API endpoints
     st.subheader("Available API Endpoints")

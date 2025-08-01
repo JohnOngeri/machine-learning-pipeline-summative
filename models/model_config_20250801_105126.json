@@ -1,0 +1,55 @@
+{
+  "wav2vec_model": "facebook/wav2vec2-base-960h",
+  "audio_parameters": {
+    "sample_rate": 16000,
+    "duration": 2.0,
+    "max_length": 32000
+  },
+  "training_parameters": {
+    "batch_size": 32,
+    "epochs": 100,
+    "patience": 10
+  },
+  "mlp_architecture": {
+    "hidden_layers": [
+      512,
+      256,
+      128
+    ],
+    "dropout_rate": 0.3,
+    "l1_regularization": 0.01,
+    "l2_regularization": 0.01,
+    "optimizer": "Adam",
+    "learning_rate": 0.001
+  },
+  "cnn_architecture": {
+    "filters": [
+      64,
+      128
+    ],
+    "kernel_size": 3,
+    "dropout_rate": 0.3,
+    "l1_regularization": 0.01,
+    "l2_regularization": 0.01,
+    "optimizer": "Adam",
+    "learning_rate": 0.001
+  },
+  "best_traditional_model": "Logistic Regression",
+  "traditional_model_params": {
+    "C": 1,
+    "class_weight": null,
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": null,
+    "max_iter": 1000,
+    "multi_class": "deprecated",
+    "n_jobs": null,
+    "penalty": "l2",
+    "random_state": 42,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  }
+}

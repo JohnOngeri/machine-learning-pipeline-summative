@@ -1,0 +1,34 @@
+AUDIO DEEPFAKE CLASSIFICATION - FINAL REPORT
+==================================================
+
+Dataset Information:
+Total samples: 17,870
+Training samples: 13,956
+Validation samples: 2,826
+Test samples: 1,088
+Feature dimension: 768
+Classes: fake, real
+
+Model Performance:
+MLP:
+  Accuracy: 0.6204
+  Precision: 0.6267
+  Recall: 0.5956
+  F1-Score: 0.6107
+  ROC-AUC: 0.6752
+
+CNN:
+  Accuracy: 0.4881
+  Precision: 0.4601
+  Recall: 0.1379
+  F1-Score: 0.2122
+  ROC-AUC: 0.4622
+
+Logistic Regression:
+  Accuracy: 0.6857
+  Precision: 0.6672
+  Recall: 0.7408
+  F1-Score: 0.7021
+  ROC-AUC: 0.7379
+
+Best Model: Logistic Regression (Accuracy: 0.6857)

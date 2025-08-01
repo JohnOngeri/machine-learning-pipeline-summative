@@ -52,30 +52,48 @@ class DeepfakePredictionService:
         if not self.model or not self.preprocessor:
             raise ValueError("Model or preprocessor not loaded.")
 
+        print(f"[INFO] Starting prediction for: {audio_path}")
+
         try:
+            print("[DEBUG] Preprocessing audio...")
             X = self.preprocessor.preprocess_single_file(audio_path)
+            print(f"[DEBUG] Preprocessing result: {type(X)}, {X}")
+
+            if X is None:
+                raise ValueError("Preprocessor returned None for features.")
+
+            print("[DEBUG] Running model prediction...")
+            predictions = self.model.predict(X)  # ✅ Correct usage
+            probabilities = self.model.predict_proba(X)  # ✅ Get prediction probabilities
+
+            print(f"[DEBUG] Predictions: {predictions}")
+            print(f"[DEBUG] Probabilities: {probabilities}")
             predictions, probabilities = self.model.predict(X)
-            
+
             label = self.preprocessor.label_encoder.inverse_transform(predictions)[0]
             confidence = float(np.max(probabilities[0]))
             classes = self.preprocessor.label_encoder.classes_
+
+            print(f"[INFO] Predicted label: {label}")
+            print(f"[INFO] Prediction confidence: {confidence}")
+            print(f"[DEBUG] Class labels: {classes}")
 
             result = {
                 'filename': os.path.basename(audio_path),
                 'prediction': label,
                 'confidence': confidence,
                 'probabilities': {
-                    'FAKE': float(probabilities[0][0]) if classes[0] == 'FAKE' else float(probabilities[0][1]),
-                    'REAL': float(probabilities[0][1]) if classes[1] == 'REAL' else float(probabilities[0][0])
+                    'FAKE': float(probabilities[0][0]) if 'FAKE' in classes else None,
+                    'REAL': float(probabilities[0][1]) if 'REAL' in classes else None
                 },
                 'status': 'success'
             }
 
-            logger.info(f"Prediction for {audio_path}: {label} (confidence: {confidence:.4f})")
+            print(f"[INFO] Prediction result for {audio_path}: {result}")
             return result
 
         except Exception as e:
-            logger.error(f"Prediction error for {audio_path}: {e}")
+            print(f"[ERROR] Prediction error for {audio_path}: {e}")
             return {
                 'filename': os.path.basename(audio_path),
                 'prediction': None,
@@ -84,6 +102,8 @@ class DeepfakePredictionService:
                 'status': 'error',
                 'error': str(e)
             }
+
+
 
     def predict_batch(self, audio_paths: List[str]) -> List[Dict[str, Any]]:
         """Predict multiple audio files in a batch."""
@@ -102,7 +122,8 @@ class DeepfakePredictionService:
         logger.debug("Model is loaded.")
 
         # === Handle training_history ===
-        training_history = self.model.training_history
+        training_history = self.model.training_history()  # with parentheses
+    
         try:
             if hasattr(training_history, 'to_dict'):
                 training_history = training_history.to_dict()

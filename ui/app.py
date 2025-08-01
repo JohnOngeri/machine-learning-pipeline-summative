@@ -261,24 +261,26 @@ def analytics_page():
                 st.error(f"Failed to parse training history: {e}")
                 return
             st.write("Raw training history:", training_history)
-
+        # ✅ Choose model: CNN, Logistic Regression, or MLP
+        selected_model = "Logistic Regression"  # Change this dynamically if needed
+        training_history = training_history.get(selected_model, {})
 
         # Display key metrics
         col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-            cv_score = training_history.get("cv_mean", 0)
+            f1 = training_history.get("f1_score", 0)
             st.markdown(f"""
             <div class="metric-card">
                 <h4>CV F1 Score</h4>
-                <h2>{cv_score:.3f}</h2>
+                <h2>{f1:.3f}</h2>
             </div>
             """, unsafe_allow_html=True)
 
         
         with col2:
-            val_metrics = training_history.get("val_metrics", {})
-            accuracy = val_metrics.get("accuracy", 0)
+            accuracy = training_history.get("accuracy", 0)
+            
             st.markdown(f"""
             <div class="metric-card">
                 <h4>Validation Accuracy</h4>
@@ -287,7 +289,7 @@ def analytics_page():
             """, unsafe_allow_html=True)
         
         with col3:
-            precision = val_metrics.get("precision", 0)
+            precision = training_history.get("precision", 0)
             st.markdown(f"""
             <div class="metric-card">
                 <h4>Precision</h4>
@@ -296,7 +298,7 @@ def analytics_page():
             """, unsafe_allow_html=True)
         
         with col4:
-            recall = val_metrics.get("recall", 0)
+            recall = training_history.get("recall", 0)
             st.markdown(f"""
             <div class="metric-card">
                 <h4>Recall</h4>
@@ -328,16 +330,16 @@ def analytics_page():
             st.plotly_chart(fig, use_container_width=True)
         
         # Model comparison metrics
-        if val_metrics:
+        if training_history:
             st.subheader("Model Performance Metrics")
             
             metrics_df = pd.DataFrame({
                 'Metric': ['Accuracy', 'Precision', 'Recall', 'F1 Score'],
                 'Score': [
-                    val_metrics.get('accuracy', 0),
-                    val_metrics.get('precision', 0),
-                    val_metrics.get('recall', 0),
-                    val_metrics.get('f1', 0)
+                    accuracy,
+                    precision,
+                    recall,
+                    f1
                 ]
             })
             

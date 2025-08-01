@@ -59,8 +59,9 @@ def process_audio_files():
     os.makedirs('data', exist_ok=True)
     
     # Save processed dataset
-    output_path = 'data/DATASET-balanced.csv'
+    output_path = r'C:\Users\HP\OneDrive\Desktop\machine learning pipeline summative\data\DATASET-balanced.csv'
     df.to_csv(output_path, index=False)
+
     
     logger.info(f"Dataset created successfully!")
     logger.info(f"Total samples: {len(df)}")

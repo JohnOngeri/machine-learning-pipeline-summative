@@ -9,6 +9,12 @@ Test samples: 1,088
 Feature dimension: 768
 Classes: fake, real
 
+Validation accuracy (0.8146) is used for model selection and tuning.
+Test accuracy (0.6857) is the true measure of generalization, reported in your final results.
+This is expected in machine learning pipelines. The test set is only used at the very end to report the final unbiased performance.
+
+
+
 Model Performance:
 MLP:
   Accuracy: 0.6204

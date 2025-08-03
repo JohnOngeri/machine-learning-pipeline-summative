@@ -2,6 +2,8 @@
 
 A complete end-to-end machine learning system for detecting deepfake voices using audio feature analysis and classification algorithms.
 
+YOUTUBE VIDEO : [https://youtu.be/tjtEcMNCHkM](url)
+
 ## 🎯 Project Overview
 
 This project implements a comprehensive deepfake voice detection system that can:

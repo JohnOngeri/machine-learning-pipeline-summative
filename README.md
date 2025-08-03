@@ -10,6 +10,7 @@ This project implements a comprehensive deepfake voice detection system that can
 - Support model retraining with user-uploaded data
 - Provide interactive web interface for testing
 - Handle high-traffic loads with performance monitoring
+<img width="1362" height="633" alt="image" src="https://github.com/user-attachments/assets/ed263a1e-3a22-4398-8a6b-39b1559e311f" />
 
 ## 🏗️ Project Structure
 
@@ -22,7 +23,7 @@ machine learning pipeline summative/
 ├── .gitignore
 │
 ├── notebook/
-│   └── deepvoice_pipeline.ipynb       # Complete ML pipeline demonstration
+│   └── audio deep fake classification.ipynb       # Complete ML pipeline demonstration
 │
 ├── src/
 │   ├── preprocessing.py               # Audio feature extraction and preprocessing
@@ -50,8 +51,13 @@ machine learning pipeline summative/
 │
 └── scripts/
     ├── train_initial_model.py        # Initial model training script
-    └── analyze_dataset.py            # Dataset analysis script
+    └── analyze_dataset.py
+         set up project.py
+         process raw auidon.py
+          validate audio files.py
+                      # Dataset analysis script
 ```
+![WhatsApp Image 2025-08-01 at 11 44 17_3afea09b](https://github.com/user-attachments/assets/7c422ef0-15bd-4497-bb07-643891828cda)
 
 
 ## 🚀 Quick Start
@@ -61,7 +67,7 @@ machine learning pipeline summative/
 \`\`\`bash
 # Clone the repository
 git clone <repository-url>
-cd deepvoice-fake-detection
+cd machine learning pipeline summative
 
 # Install dependencies
 pip install -r requirements.txt
@@ -129,7 +135,7 @@ docker run -p 8501:8501 -v $(pwd)/models:/app/models deepfake-detection streamli
 - **Real-time Processing**: Single file and batch prediction support
 
 ### 🤖 Machine Learning
-- **Multiple Algorithms**: Random Forest, Logistic Regression, SVM
+- **Multiple Algorithms**: MLP, Logistic Regression, CNN
 - **Hyperparameter Tuning**: Grid search with cross-validation
 - **Performance Metrics**: Accuracy, Precision, Recall, F1-Score, ROC-AUC
 
@@ -157,23 +163,6 @@ docker run -p 8501:8501 -v $(pwd)/models:/app/models deepfake-detection streamli
 | `/model/info` | GET | Get model information |
 | `/metrics` | GET | Get performance metrics |
 
-## 📈 Model Performance
-
-### Current Model Metrics
-- **Algorithm**: Random Forest Classifier
-- **Cross-Validation F1**: 0.95+ (±0.02)
-- **Test Accuracy**: 94%+
-- **Test Precision**: 94%+
-- **Test Recall**: 94%+
-- **Test F1 Score**: 94%+
-
-### Feature Importance
-Top contributing features for deepfake detection:
-1. MFCC coefficients (1-13)
-2. Spectral centroid
-3. Spectral bandwidth
-4. RMS energy
-5. Zero-crossing rate
 
 ## 🧪 Load Testing
 
@@ -199,30 +188,16 @@ locust -f locust/locustfile.py --host=http://localhost:8000
 
 ### Source
 - **Dataset**: Deep Voice Deepfake Voice Recognition
-- **Source**: Kaggle Dataset
+- **Source**: Kaggle Dataset  [ https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data?select=for-2sec](url)
 - **Size**: Balanced dataset with REAL and FAKE samples
-- **Features**: 21 audio features extracted from .wav files
-
-### Feature Description
-- **Chroma STFT**: Chromagram from short-time Fourier transform
-- **RMS**: Root mean square energy
-- **Spectral Centroid**: Center of mass of spectrum
-- **Spectral Bandwidth**: Width of spectrum
-- **Rolloff**: Frequency below which 85% of energy is contained
-- **Zero Crossing Rate**: Rate of sign changes in signal
-- **MFCC 1-20**: Mel-frequency cepstral coefficients
+-
 
 ## 🛠️ Development
 
 ### Running Tests
 
 \`\`\`bash
-# Run unit tests
-pytest tests/
 
-# Run with coverage
-pytest --cov=src tests/
-\`\`\`
 
 ### Code Quality
 
@@ -287,34 +262,3 @@ Logs are stored in the \`logs/\` directory:
 - Secure model file storage
 - Environment variable protection
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- Kaggle for providing the deepfake voice dataset
-- scikit-learn community for ML algorithms
-- FastAPI and Streamlit for web frameworks
-- librosa for audio processing capabilities
-
-## 📞 Support
-
-For issues and questions:
-1. Check the troubleshooting section
-2. Review existing GitHub issues
-3. Create a new issue with detailed description
-4. Include logs and system information
-
----
-
-**Built with ❤️ for detecting deepfake voices and protecting audio authenticity**
-\`\`\`

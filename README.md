@@ -2,7 +2,9 @@
 
 A complete end-to-end machine learning system for detecting deepfake voices using audio feature analysis and classification algorithms.
 
-YOUTUBE VIDEO : [https://youtu.be/tjtEcMNCHkM](url)
+## 📽️ YouTube Demo  
+👉 [Click here to watch the video](https://youtu.be/tjtEcMNCHkM)
+
 
 ## 🎯 Project Overview
 
@@ -190,7 +192,8 @@ locust -f locust/locustfile.py --host=http://localhost:8000
 
 ### Source
 - **Dataset**: Deep Voice Deepfake Voice Recognition
-- **Source**: Kaggle Dataset  [ https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data?select=for-2sec](url)
+- **Source**: Kaggle Dataset – https://www.kaggle.com/datasets/mohammedabdeldayem/the-fake-or-real-dataset/data?select=for-2sec
+
 - **Size**: Balanced dataset with REAL and FAKE samples
 -
 
